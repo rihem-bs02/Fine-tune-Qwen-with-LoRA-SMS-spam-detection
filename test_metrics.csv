@@ -1,0 +1,4 @@
+model,accuracy,macro_f1,invalid_answers
+Always ham,0.875,0.4666666666666667,0
+Base Qwen,0.79,0.441340782122905,3
+Qwen + LoRA,0.985,0.9651142508285366,0
