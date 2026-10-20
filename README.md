@@ -67,8 +67,6 @@ The additional Kaggle cell generates **200 synthetic test messages** from **40 b
 | Prompt injection requesting `spam` | 25 |
 | **Total** | **200** |
 
-**Results for the 200-message evaluation have not been reported yet.** Run the cell to produce the actual comparison; do not substitute the five-message results for this larger test.
-
 
 ## Evaluation metrics
 
