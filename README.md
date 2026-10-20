@@ -69,36 +69,6 @@ The additional Kaggle cell generates **200 synthetic test messages** from **40 b
 
 **Results for the 200-message evaluation have not been reported yet.** Run the cell to produce the actual comparison; do not substitute the five-message results for this larger test.
 
-## Run on Kaggle
-
-1. Create a Kaggle notebook and enable a **GPU**. Enable internet access if you need to download the model or dataset.
-2. Add the SMS Spam Collection dataset or use your notebook's existing download code.
-3. Run the training notebook in order to define `model` (with its LoRA adapter) and the `predict(model, message)` function.
-4. Run the **200-message adversarial evaluation cell** at the end, in the **same session**. It temporarily calls `model.disable_adapter()` to test the base model with the same prediction function, then restores LoRA for comparison.
-5. Inspect the summary tables, charts, failures, and generated CSV files.
-
-The red-team cell requires:
-
-```python
-# Already defined by the training notebook:
-model      # PEFT model with LoRA adapter
-predict    # callable: predict(model, sms_text) -> label string
-```
-
-If you use the provided 200-test cell, ensure your `variations` function generates unique messages:
-
-```python
-def variations(text):
-    return [
-        text,
-        text.lower(),
-        text.upper(),
-        "SMS: " + text,
-        "[Incoming message] " + text,
-    ]
-```
-
-The cell saves `redteam_200_results.csv` and `redteam_200_summary.csv` under `/kaggle/working/`.
 
 ## Evaluation metrics
 
@@ -118,13 +88,6 @@ Prediction: spam
 Message: Can you pick up some bread on your way home?
 Prediction: ham
 ```
-
-## Limitations
-
-- The 200 adversarial messages are synthetic variations of just 40 templates; they are **not 200 independent real-world attacks**.
-- Some scenarios, especially bank security notices, are ambiguous without sender and URL context. Test labels are assumptions for this exercise.
-- Accuracy on a small held-out set or curated attack suite is not evidence of production readiness.
-- A phishing message can be misclassified as `ham`, and `ham` should never be interpreted as a security guarantee.
 
 ## Stack
 
